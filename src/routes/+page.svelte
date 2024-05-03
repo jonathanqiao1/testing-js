@@ -6,18 +6,19 @@
         clicks.push(Date.now())
     }
     setInterval(() => {
-        clicks = clicks.filter(x => Date.now() - x <= 5000)
-        if (clicks.length <= 1) {
-            cps = clicks.length
-        }
-        else {
-            cps = (clicks.length / (Date.now() - clicks[0]) * 1000)
-        }
+        clicks = clicks.filter(x => Date.now() - x <= 1000)
+            if (Date.now() - clicks[0] > 999) {
+                (cps = (clicks.length / (Date.now() - clicks[0]) * 1000))
+            }
+            else {
+                cps = clicks.length
+            }
     }, 1)
 
 
 </script>
+<a href="http://localhost:5173/accuratecps" class="size-28"> To Accurate CPS </a>
 
 <button on:click={real_test} class="bg-amber-500 p-3 rounded-xl m-3 h-[500px] w-1/2 ">CLick Me!</button>
 
-<p class="text-5xl text-blue-400 font-black">CPS: {cps.toFixed(5)}</p>
+<p class="text-5xl text-blue-400 font-black">CPS: {cps.toFixed(0)}</p>
